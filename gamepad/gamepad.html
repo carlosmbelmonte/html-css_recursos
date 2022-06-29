@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <title>ESP32-CAM Robot</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body{ 
+                font-family: Arial; 
+                text-align: center; 
+                margin:0px auto; 
+                padding-top: 30px;
+            }
+            .button{
+                background-color: #2f4468;
+                border: none;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 18px;
+                margin: 6px 3px;
+                cursor: pointer;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                -webkit-tap-highlight-color: rgba(0,0,0,0);
+            }
+            .arrow{
+                width: 0; 
+                height: 0; 
+                border-left: var(--bleft);
+                border-right: var(--bright);
+                border-bottom: var(--bbottom);
+                border-top: var(--btop);
+            }
+            .central{
+                display: flex;
+                justify-content: center;
+            }
+            .CENTER{
+                display: flex;
+                flex-direction: column;
+            }
+            .LEFT,.RIGHT{
+                margin: auto 0;
+            }
+            .btnVertical{
+                display: flex;
+                justify-content: center;  
+            }
+        </style>
+    </head>
+    <body>
+        <div class="central">
+            <div class="LEFT">
+                <button>
+                    <div class="arrow" style="--btop: 10px solid transparent;--bbottom: 10px solid transparent; --bright: 10px solid black; --bleft:none" ></div>   
+                </button> 
+            </div>
+            <div class="CENTER">
+                <button class="btnVertical">
+                    <div class="arrow" style="--bleft: 10px solid transparent;--bright: 10px solid transparent; --bbottom: 10px solid black; --btop:none" ></div>
+                </button>
+                <button>STOP</button>
+                <button class="btnVertical">
+                    <div class="arrow" style="--bleft: 10px solid transparent;--bright: 10px solid transparent; --bbottom: none; --btop:10px solid black" ></div>
+                </button>
+            </div>
+            <div class="RIGHT">
+                <button>
+                    <div class="arrow" style="--btop: 10px solid transparent;--bbottom: 10px solid transparent; --bright: none; --bleft:10px solid black" ></div>   
+                </button>
+            </div>  
+        </div>
+    </body>
+</html>
