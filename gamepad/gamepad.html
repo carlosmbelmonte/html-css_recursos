@@ -13,20 +13,29 @@
                 background-color: #707372;
                 border: none;
                 cursor: pointer;
-                padding: 15px 32px;
+                padding: 0;
+                width: 3em;
+                height: 3em;
                 border-radius: var(--brbtn);
-                /*border-radius: 8px 8px 0px 0px;TOP*/
-                /*border-radius: 0px 0px 8px 8px;BOTTOM*/
-                /*border-radius: 8px 0px 0px 8px;LEFT*/
-                /*border-radius: 0px 8px 8px 0px;RIGHT*/
+            }
+            button:hover{
+                background-color:rgb(163, 150, 237) 
             }
             .arrow{
                 width: 0; 
                 height: 0; 
+                margin: auto;
                 border-left: var(--bleft);
                 border-right: var(--bright);
                 border-bottom: var(--bbottom);
                 border-top: var(--btop);
+            }
+            .circle{
+                width: 2em;
+                height: 2em;
+                background: #212324;
+                border-radius: 50%;
+                margin: auto;
             }
             .central{
                 display: flex;
@@ -40,6 +49,8 @@
                 margin: auto 0;
             }
             .btnVertical{
+                margin-right: auto;
+                margin-left: auto;
                 display: flex;
                 justify-content: center;  
             }
@@ -48,24 +59,40 @@
     <body>
         <div class="central">
             <div class="LEFT">
-                <button style="--brbtn: 8px 0px 0px 8px;">
-                    <div class="arrow" style="--btop: 10px solid transparent;--bbottom: 10px solid transparent; --bright: 10px solid #212324; --bleft:none" ></div>   
+                <button style="--brbtn: 0.5em 0px 0px 0.5em;" onclick="">
+                    <div class="arrow" style="--btop: 0.5em solid transparent;--bbottom: 0.5em solid transparent; --bright: 0.5em solid #212324; --bleft:none" ></div>   
                 </button> 
             </div>
             <div class="CENTER">
-                <button class="btnVertical" style="--brbtn: 8px 8px 0px 0px;">
-                    <div class="arrow" style="--bleft: 10px solid transparent;--bright: 10px solid transparent; --bbottom: 10px solid #212324; --btop:none" ></div>
+                <button class="btnVertical" style="--brbtn: 0.5em 0.5em 0px 0px;">
+                    <div class="arrow" style="--bleft: 0.5em solid transparent;--bright: 0.5em solid transparent; --bbottom: 0.5em solid #212324; --btop:none" ></div>
                 </button>
-                <button>STOP</button>
-                <button class="btnVertical" style="--brbtn: 0px 0px 8px 8px;">
-                    <div class="arrow" style="--bleft: 10px solid transparent;--bright: 10px solid transparent; --bbottom: none; --btop:10px solid #212324" ></div>
+                <button style="--brbtn: none;">
+                    <div class="circle"></div>
+                </button>    
+                <button class="btnVertical" style="--brbtn: 0px 0px 0.5em 0.5em;">
+                    <div class="arrow" style="--bleft: 0.5em solid transparent;--bright: 0.5em solid transparent; --bbottom: none; --btop:0.5em solid #212324" ></div>
                 </button>
             </div>
             <div class="RIGHT">
-                <button style="--brbtn: 0px 8px 8px 0px;">
-                    <div class="arrow" style="--btop: 10px solid transparent;--bbottom: 10px solid transparent; --bright: none; --bleft:10px solid #212324" ></div>   
+                <button id="btnR"onclick="Buttontoggle()" style="--brbtn: 0px 0.5em 0.5em 0px;" value="right">
+                    <div class="arrow" style="--btop: 0.5em solid transparent;--bbottom: 0.5em solid transparent; --bright: none; --bleft:0.5em solid #212324" ></div>   
                 </button>
             </div>  
         </div>
+        <div id="123">Some Text</div>
+        <script type="text/javascript">
+            
+            function Buttontoggle()
+            {
+                let t = document.getElementById("btnR");
+                if(document.getElementById("btnR").value=="right"){
+                    document.getElementById("btnR").value="";
+                    document.getElementById("btnR").style.backgroundColor = '#a396ed';}
+                else{
+                    document.getElementById("btnR").value="right";
+                    document.getElementById("btnR").style.backgroundColor = '#707372';}
+            }
+        </script>
     </body>
 </html>
