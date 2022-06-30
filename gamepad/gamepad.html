@@ -59,39 +59,84 @@
     <body>
         <div class="central">
             <div class="LEFT">
-                <button style="--brbtn: 0.5em 0px 0px 0.5em;" onclick="">
+                <button id="btnL" onpointerdown="DownPush('L')" onpointerup="UpPush('L')" style="--brbtn: 0.5em 0px 0px 0.5em;" name="gamepad">
                     <div class="arrow" style="--btop: 0.5em solid transparent;--bbottom: 0.5em solid transparent; --bright: 0.5em solid #212324; --bleft:none" ></div>   
                 </button> 
             </div>
             <div class="CENTER">
-                <button class="btnVertical" style="--brbtn: 0.5em 0.5em 0px 0px;">
+                <button id="btnU" onpointerdown="DownPush('U')" onpointerup="UpPush('U')" class="btnVertical" style="--brbtn: 0.5em 0.5em 0px 0px;" name="gamepad">
                     <div class="arrow" style="--bleft: 0.5em solid transparent;--bright: 0.5em solid transparent; --bbottom: 0.5em solid #212324; --btop:none" ></div>
                 </button>
-                <button style="--brbtn: none;">
+                <button id="btnStop" onpointerdown="DownPush('Stop')" onpointerup="UpPush('Stop')" style="--brbtn: none;">
                     <div class="circle"></div>
                 </button>    
-                <button class="btnVertical" style="--brbtn: 0px 0px 0.5em 0.5em;">
+                <button id="btnB" onpointerdown="DownPush('B')" onpointerup="UpPush('B')" class="btnVertical" style="--brbtn: 0px 0px 0.5em 0.5em;" name="gamepad">
                     <div class="arrow" style="--bleft: 0.5em solid transparent;--bright: 0.5em solid transparent; --bbottom: none; --btop:0.5em solid #212324" ></div>
                 </button>
             </div>
             <div class="RIGHT">
-                <button id="btnR"onclick="Buttontoggle()" style="--brbtn: 0px 0.5em 0.5em 0px;" value="right">
+                <button id="btnR" onpointerdown="DownPush('R')" onpointerup="UpPush('R')" style="--brbtn: 0px 0.5em 0.5em 0px;" name="gamepad">
                     <div class="arrow" style="--btop: 0.5em solid transparent;--bbottom: 0.5em solid transparent; --bright: none; --bleft:0.5em solid #212324" ></div>   
                 </button>
             </div>  
         </div>
-        <div id="123">Some Text</div>
+        <div id="textoU" name="textoCantidad"></div>
+        <div id="textoR" name="textoCantidad"></div>
+        <div id="textoB" name="textoCantidad"></div>
+        <div id="textoL" name="textoCantidad"></div>
+
         <script type="text/javascript">
-            
-            function Buttontoggle()
-            {
-                let t = document.getElementById("btnR");
-                if(document.getElementById("btnR").value=="right"){
-                    document.getElementById("btnR").value="";
-                    document.getElementById("btnR").style.backgroundColor = '#a396ed';}
-                else{
-                    document.getElementById("btnR").value="right";
-                    document.getElementById("btnR").style.backgroundColor = '#707372';}
+            let coordenadas = ['U','R','B','L']; 
+            let count = [0,0,0,0];//U-R-B-L
+            let flag=false; 
+            let interval;
+            let leter;  
+            let _gamepad = document.getElementsByName("gamepad");
+            let _textoCantidad = document.getElementsByName("textoCantidad");     
+
+            function DownPush(x){ 
+                flag=true;
+                interval = setInterval(()=>doSomething(x),100)                   
+            }
+            function UpPush(x){
+                flag=false;
+                clearInterval(interval); 
+                doSomething(x);    
+            }
+            function doSomething(letter){
+                if(letter==='U'){x=0}
+                if(letter==='R'){x=1}
+                if(letter==='B'){x=2}
+                if(letter==='L'){x=3}
+
+                if(letter==='Stop' && flag===true){                  
+                    for(let i=0;i<4;i++){
+                        count[i]=0;
+                        _gamepad[i].style.backgroundColor = '#a396ed'; 
+                        _textoCantidad[i].innerHTML=`Cantidad del btn${coordenadas[i]}: ${count[i]}`;                       
+                    }
+                    document.getElementById('btnStop').style.backgroundColor = '#a396ed';
+                    return 0;    
+                }
+
+                if(letter==='Stop' && flag===false){
+                    for(let i=0;i<4;i++){
+                        _gamepad[i].style.backgroundColor = '#707372';                       
+                    }
+                    document.getElementById('btnStop').style.backgroundColor = '#707372';
+                    return 0;    
+                }
+
+                if(flag){
+                    document.getElementById(`btn${letter}`).style.backgroundColor = '#a396ed';
+                    count[x]=count[x]+1;
+                    console.log(`pulsado btn${letter}: `, count[x])
+                    document.getElementById(`texto${letter}`).innerHTML=`Cantidad del btn${letter}: ${count[x]}`;
+                       
+                }else{
+                    document.getElementById(`btn${letter}`).style.backgroundColor = '#707372';
+                    console.log(`despulsado btn${letter}`)                    
+                }
             }
         </script>
     </body>
