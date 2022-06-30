@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>SwitchPad</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            body{
+                overflow-x: hidden;
+            
+            }
+            .grid-container {
+                display: grid;
+                height: 25vh;
+                grid-template-rows: 100% 100% 100% 100%;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+                
+                grid-template-areas:
+                "area1 area3 area3 area3 area3 area2"
+                "area1 area3 area3 area3 area3 area2"
+                "area1 area3 area3 area3 area3 area2"
+                "area1 area4 area4 area4 area4 area2";
+            }
+
+.grid-item1 {
+  background: blue;
+  text-align: center;
+  
+  grid-area: area1;
+}
+
+.grid-item2 {
+  background: red;
+  text-align: center;
+  
+  grid-area: area2;
+}
+
+.grid-item3 {
+  background: green;
+  text-align: center;
+ 
+  grid-area: area3;
+}
+.grid-item4 {
+  background: yellow;
+  text-align: center;
+ 
+  grid-area: area4;
+}
+        </style>
+    </head>
+    <body>
+        <div class="grid-container">
+            <div class="grid-item1">1</div>
+            <div class="grid-item2">2</div>
+            <div class="grid-item3">3</div>
+            <div class="grid-item4">4</div>  
+        </div>
+    </body>
+</html>
