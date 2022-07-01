@@ -12,55 +12,95 @@
             }
             body{
                 overflow-x: hidden;
-            
+                background: purple;
+                display: flex;            
             }
-            .grid-container {
+            .video{
+                background: green;
+                text-align: center;            
+                grid-area: video;
+            }
+            .comandos{
+                background: yellow;
+                text-align: center;           
+                grid-area: comandos;
+            }
+            @media (orientation: landscape) {
+              body {
+                flex-direction: row;
+                height: 100vh;
+              }
+              .mandoL{
+                background: blue;
+                text-align: center;              
+                grid-area: mandoL;
+              }
+              .mandoR{
+                background: red;
+                text-align: center;              
+                grid-area: mandoR;
+              }
+              .mandoGral{
+                display: none;
+              }
+              .grid-container {
                 display: grid;
-                height: 25vh;
-                grid-template-rows: 100% 100% 100% 100%;
-                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-                
+                height: 100%;
+                width: 100%;
+                grid-template-rows: repeat(6, 1fr);
+                grid-template-columns: repeat(12, 1fr);
                 grid-template-areas:
-                "area1 area3 area3 area3 area3 area2"
-                "area1 area3 area3 area3 area3 area2"
-                "area1 area3 area3 area3 area3 area2"
-                "area1 area4 area4 area4 area4 area2";
+                "mandoL mandoL  video     video   video     video   video     video   video   video    mandoR mandoR"
+                "mandoL mandoL  video     video   video     video   video     video   video   video    mandoR mandoR"
+                "mandoL mandoL  video     video   video     video   video     video   video   video    mandoR mandoR"
+                "mandoL mandoL  video     video   video     video   video     video   video   video    mandoR mandoR"
+                "mandoL mandoL comandos comandos comandos comandos comandos comandos comandos comandos mandoR mandoR"
+                "mandoL mandoL comandos comandos comandos comandos comandos comandos comandos comandos mandoR mandoR";
+              }
             }
 
-.grid-item1 {
-  background: blue;
-  text-align: center;
-  
-  grid-area: area1;
-}
-
-.grid-item2 {
-  background: red;
-  text-align: center;
-  
-  grid-area: area2;
-}
-
-.grid-item3 {
-  background: green;
-  text-align: center;
- 
-  grid-area: area3;
-}
-.grid-item4 {
-  background: yellow;
-  text-align: center;
- 
-  grid-area: area4;
-}
+            @media (orientation: portrait) {
+              body {
+                flex-direction: column;
+                height: 100vh;
+              }
+              .mandoGral{
+                background: pink;
+                text-align: center;           
+                grid-area: mandoGral;
+              }
+              .mandoL, .mandoR{
+                display: none;
+              }
+              .grid-container {
+                display: grid;
+                height: 100vmax;
+                grid-template-rows: repeat(12, 1fr);
+                grid-template-columns: repeat(12, 1fr);
+                grid-template-areas:
+                "video      video     video     video     video     video     video     video     video     video     video     video"
+                "video      video     video     video     video     video     video     video     video     video     video     video"
+                "video      video     video     video     video     video     video     video     video     video     video     video"
+                "video      video     video     video     video     video     video     video     video     video     video     video"
+                "video      video     video     video     video     video     video     video     video     video     video     video"
+                "video      video     video     video     video     video     video     video     video     video     video     video"
+                "comandos   comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos"
+                "comandos   comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos"
+                "mandoGral  mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral"
+                "mandoGral  mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral"
+                "mandoGral  mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral"
+                "mandoGral  mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral";
+              }
+            }
         </style>
     </head>
     <body>
         <div class="grid-container">
-            <div class="grid-item1">1</div>
-            <div class="grid-item2">2</div>
-            <div class="grid-item3">3</div>
-            <div class="grid-item4">4</div>  
+            <div class="mandoL">Mando Izquierdo</div>
+            <div class="mandoR">Mando Derecho</div>
+            <div class="video">VIDEO</div>
+            <div class="comandos">Velocidad</div>
+            <div class="mandoGral">Mando General</div>   
         </div>
     </body>
 </html>
