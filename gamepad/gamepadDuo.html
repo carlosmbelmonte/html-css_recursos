@@ -1,0 +1,153 @@
+<html>
+    <head>
+        <title>GamePad</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body{ 
+                font-family: Arial; 
+                text-align: center; 
+                margin:0px auto; 
+                padding-top: 30px;
+            }
+            button{
+                background-color: #707372;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+                width: 3em;
+                height: 3em;
+                border-radius: var(--brbtn);
+            }
+            
+            .arrow{
+                width: 0; 
+                height: 0; 
+                margin: auto;
+                border-left: var(--bleft);
+                border-right: var(--bright);
+                border-bottom: var(--bbottom);
+                border-top: var(--btop);
+            }
+            .circle{
+                width: 1em;
+                height: 1em;
+                background: #212324;
+                border-radius: 50%;
+                margin: auto;
+            }
+            .central{
+                display: flex;
+                justify-content: center;
+            }
+            .CENTER{
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .btnVertical{
+                margin-right: auto;
+                margin-left: auto;
+                display: flex;
+                justify-content: center;  
+            }
+
+        </style>
+    </head>
+    <body>        
+        <div style="display: flex;">
+            <div class="LEFT" style="display: flex; align-items: flex-start;">
+                <button id="btnL" onpointerdown="DownPush('L')" onpointerup="UpPush('L')" style="--brbtn: 0.5em 0px 0px 0.5em;" name="gamepad">
+                    <div class="arrow" style="--btop: 0.5em solid transparent;--bbottom: 0.5em solid transparent; --bright: 0.5em solid #212324; --bleft:none" ></div>   
+                </button> 
+            </div>
+            <div class="CENTER">
+                <button id="btnStopL" onpointerdown="DownPush('Stop')" onpointerup="UpPush('Stop')" style="--brbtn: 0px 1.25rem 0px 0px;">
+                    <div class="circle"></div>
+                </button>    
+                <button id="btnB" onpointerdown="DownPush('B')" onpointerup="UpPush('B')" class="btnVertical" style="--brbtn: 0px 0px 0.5em 0.5em;" name="gamepad">
+                    <div class="arrow" style="--bleft: 0.5em solid transparent;--bright: 0.5em solid transparent; --bbottom: none; --btop:0.5em solid #212324" ></div>
+                </button>
+            </div>
+        </div>    
+
+        <div style="display: flex;">
+            <div class="CENTER">
+                <button id="btnU" onpointerdown="DownPush('U')" onpointerup="UpPush('U')" class="btnVertical" style="--brbtn: 0.5em 0.5em 0px 0px;" name="gamepad">
+                    <div class="arrow" style="--bleft: 0.5em solid transparent;--bright: 0.5em solid transparent; --bbottom: 0.5em solid #212324; --btop:none" ></div>
+                </button>
+                <button id="btnStopR" onpointerdown="DownPush('Stop')" onpointerup="UpPush('Stop')" style="--brbtn: 0px 0px 0px 1.25rem">
+                    <div class="circle"></div>
+                </button>
+            </div>                        
+            <div class="RIGHT" style="display: flex; align-items: flex-end;">
+                <button id="btnR" onpointerdown="DownPush('R')" onpointerup="UpPush('R')" style="--brbtn: 0px 0.5em 0.5em 0px;" name="gamepad">
+                    <div class="arrow" style="--btop: 0.5em solid transparent;--bbottom: 0.5em solid transparent; --bright: none; --bleft:0.5em solid #212324" ></div>   
+                </button>
+            </div>                     
+        </div> 
+
+        <div class="triangulo"></div>
+
+        <div id="textoU" name="textoCantidad"></div>
+        <div id="textoR" name="textoCantidad"></div>
+        <div id="textoB" name="textoCantidad"></div>
+        <div id="textoL" name="textoCantidad"></div>
+
+        <script type="text/javascript">
+            let coordenadas = ['U','R','B','L']; 
+            let count = [0,0,0,0];//U-R-B-L
+            let flag=false; 
+            let interval;
+            let leter;  
+            let _gamepad = document.getElementsByName("gamepad");
+            let _textoCantidad = document.getElementsByName("textoCantidad");     
+
+            function DownPush(x){ 
+                flag=true;
+                interval = setInterval(()=>doSomething(x),100)                   
+            }
+            function UpPush(x){
+                flag=false;
+                clearInterval(interval); 
+                doSomething(x);    
+            }
+            function doSomething(letter){
+                if(letter==='U'){x=0}
+                if(letter==='R'){x=1}
+                if(letter==='B'){x=2}
+                if(letter==='L'){x=3}
+
+                if(letter==='Stop' && flag===true){                  
+                    for(let i=0;i<4;i++){
+                        count[i]=0;
+                        _gamepad[i].style.backgroundColor = '#a396ed'; 
+                        _textoCantidad[i].innerHTML=`Cantidad del btn${coordenadas[i]}: ${count[i]}`;                       
+                    }
+                    document.getElementById('btnStopR').style.backgroundColor = '#a396ed';
+                    document.getElementById('btnStopL').style.backgroundColor = '#a396ed';
+                    return 0;    
+                }
+
+                if(letter==='Stop' && flag===false){
+                    for(let i=0;i<4;i++){
+                        _gamepad[i].style.backgroundColor = '#707372';                       
+                    }
+                    document.getElementById('btnStopR').style.backgroundColor = '#707372';
+                    document.getElementById('btnStopL').style.backgroundColor = '#707372';
+                    return 0;    
+                }
+
+                if(flag){
+                    document.getElementById(`btn${letter}`).style.backgroundColor = '#a396ed';
+                    count[x]=count[x]+1;
+                    console.log(`pulsado btn${letter}: `, count[x])
+                    document.getElementById(`texto${letter}`).innerHTML=`Cantidad del btn${letter}: ${count[x]}`;
+                       
+                }else{
+                    document.getElementById(`btn${letter}`).style.backgroundColor = '#707372';
+                    console.log(`despulsado btn${letter}`)                    
+                }
+            }
+        </script>
+    </body>
+</html>
