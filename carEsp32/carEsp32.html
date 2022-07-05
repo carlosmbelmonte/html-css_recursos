@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>SwitchPad</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            body{
+                overflow-x: hidden;
+                background: purple;
+                display: flex;            
+            }
+
+            @media (orientation: landscape) {
+              body {
+                flex-direction: row;
+                height: 100vh;
+              }
+              .mandoL{
+                background: #06BADD;
+                text-align: center;              
+                grid-area: mandoL;
+              }
+              .mandoR{
+                background: #F56E64;
+                text-align: center;              
+                grid-area: mandoR;
+              }
+              .mandoGral{
+                display: none;
+              }
+              .grid-container {
+                display: grid;
+                height: 100%;
+                width: 100%;
+                grid-template-rows: repeat(6, 1fr);
+                grid-template-columns: repeat(12, 1fr);
+                grid-template-areas:
+                "mandoL mandoL  video     video   video     video   video     video   video   video    mandoR mandoR"
+                "mandoL mandoL  video     video   video     video   video     video   video   video    mandoR mandoR"
+                "mandoL mandoL  video     video   video     video   video     video   video   video    mandoR mandoR"
+                "mandoL mandoL  video     video   video     video   video     video   video   video    mandoR mandoR"
+                "mandoL mandoL comandos comandos comandos comandos comandos comandos comandos comandos mandoR mandoR"
+                "mandoL mandoL comandos comandos comandos comandos comandos comandos comandos comandos mandoR mandoR";
+              }
+            }
+
+            @media (orientation: portrait) {
+                body {
+                    flex-direction: column;
+                    height: 100vh;
+                }
+                .video{
+                    background: #221F24;
+                    text-align: center;            
+                    grid-area: video;
+                    height: 50vh;
+                }
+                .comandos{
+                    background: #6A6367;
+                    text-align: center;           
+                    grid-area: comandos;
+                    height: 10vh;
+                }                
+                .mandoGral{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background: #aaaaaa;                             
+                    grid-area: mandoGral;
+                    height: 40vh;
+                }
+                .mandoL, .mandoR{
+                    display: none;
+                }
+                .grid-container {
+                    display: grid;
+                    height: 100vmin;
+                    grid-template-rows: repeat(12, 1fr);
+                    grid-template-columns: repeat(12, 1fr);
+                    grid-template-areas:
+                    "video      video     video     video     video     video     video     video     video     video     video     video"
+                    "video      video     video     video     video     video     video     video     video     video     video     video"
+                    "video      video     video     video     video     video     video     video     video     video     video     video"
+                    "video      video     video     video     video     video     video     video     video     video     video     video"
+                    "video      video     video     video     video     video     video     video     video     video     video     video"
+                    "video      video     video     video     video     video     video     video     video     video     video     video"
+                    "comandos   comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos"
+                    "comandos   comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos"
+                    "mandoGral  mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral"
+                    "mandoGral  mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral"
+                    "mandoGral  mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral"
+                    "mandoGral  mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral";
+                }
+
+
+                button{
+                    background-color: #707372;
+                    border: none;
+                    cursor: pointer;
+                    padding: 0;
+                    width: 9vh;
+                    height: 9vh;
+                    border-radius: var(--brbtn);
+                }
+                button:hover{
+                    background-color:rgb(163, 150, 237) 
+                }
+                .arrow{
+                    width: 0; 
+                    height: 0; 
+                    margin: auto;
+                    border-left: var(--bleft);
+                    border-right: var(--bright);
+                    border-bottom: var(--bbottom);
+                    border-top: var(--btop);
+                }
+                .circle{
+                    width: 6vh;
+                    height: 6vh;
+                    background: #212324;
+                    border-radius: 50%;
+                    margin: auto;
+                }
+                .central{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .CENTER{
+                    display: flex;
+                    flex-direction: column;
+                }
+                .LEFT,.RIGHT{
+                    margin: auto 0;
+                }
+                .btnVertical{
+                    margin-right: auto;
+                    margin-left: auto;
+                    display: flex;
+                    justify-content: center;  
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="grid-container">
+            <div class="mandoL">Mando Izquierdo</div>
+            <div class="mandoR">Mando Derecho</div>
+            <div class="video">VIDEO</div>
+            <div class="comandos">Velocidad</div>
+            <div class="mandoGral">
+                <div class="central">
+                    <div class="LEFT">
+                        <button id="btnL" onpointerdown="DownPush('L')" onpointerup="UpPush('L')" style="--brbtn: 1.5vh 0px 0px 1.5vh;" name="gamepad">
+                            <div class="arrow" style="--btop: 1.5vh solid transparent;--bbottom: 1.5vh solid transparent; --bright: 1.5vh solid #212324; --bleft:none" ></div>   
+                        </button> 
+                    </div>
+                    <div class="CENTER">
+                        <button id="btnU" onpointerdown="DownPush('U')" onpointerup="UpPush('U')" class="btnVertical" style="--brbtn: 1.5vh 1.5vh 0px 0px;" name="gamepad">
+                            <div class="arrow" style="--bleft: 1.5vh solid transparent;--bright: 1.5vh solid transparent; --bbottom: 1.5vh solid #212324; --btop:none" ></div>
+                        </button>
+                        <button id="btnStop" onpointerdown="DownPush('Stop')" onpointerup="UpPush('Stop')" style="--brbtn: none;">
+                            <div class="circle"></div>
+                        </button>    
+                        <button id="btnB" onpointerdown="DownPush('B')" onpointerup="UpPush('B')" class="btnVertical" style="--brbtn: 0px 0px 1.5vh 1.5vh;" name="gamepad">
+                            <div class="arrow" style="--bleft: 1.5vh solid transparent;--bright: 1.5vh solid transparent; --bbottom: none; --btop:1.5vh solid #212324" ></div>
+                        </button>
+                    </div>
+                    <div class="RIGHT">
+                        <button id="btnR" onpointerdown="DownPush('R')" onpointerup="UpPush('R')" style="--brbtn: 0px 1.5vh 1.5vh 0px;" name="gamepad">
+                            <div class="arrow" style="--btop: 1.5vh solid transparent;--bbottom: 1.5vh solid transparent; --bright: none; --bleft:1.5vh solid #212324" ></div>   
+                        </button>
+                    </div>  
+                </div>
+            </div>   
+        </div>
+    </body>
+</html>
