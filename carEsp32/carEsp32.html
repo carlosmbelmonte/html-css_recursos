@@ -5,6 +5,13 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            let rootElement = document.documentElement;
+            let cteportrait = (screen.height/screen.width);
+            let ctelandscape = (screen.width/screen.height);
+            rootElement.style.setProperty("--portrait", cteportrait);
+            rootElement.style.setProperty("--landscape", ctelandscape);
+        </script>
         <style>
             *{
                 margin: 0;
@@ -104,8 +111,8 @@
                     border: none;
                     cursor: pointer;
                     padding: 0;
-                    width: 9vh;
-                    height: 9vh;
+                    width: calc( var(--portrait)*5.5vh );
+                    height: calc( var(--portrait)*5.5vh );
                     border-radius: var(--brbtn);
                 }
                 button:hover{
@@ -149,11 +156,12 @@
         </style>
     </head>
     <body>
+        
         <div class="grid-container">
             <div class="mandoL">Mando Izquierdo</div>
             <div class="mandoR">Mando Derecho</div>
             <div class="video">VIDEO</div>
-            <div class="comandos">Velocidad</div>
+            <div id="comandos" class="comandos"></div>
             <div class="mandoGral">
                 <div class="central">
                     <div class="LEFT">
@@ -180,5 +188,6 @@
                 </div>
             </div>   
         </div>
+        
     </body>
 </html>
