@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script>
-            let rootElement = document.documentElement;
+            let rootElement = document.documentElement;           
             let cteportrait = (screen.height/screen.width);
             let ctelandscape = (screen.width/screen.height);
             rootElement.style.setProperty("--portrait", cteportrait);
@@ -16,6 +16,9 @@
             *{
                 margin: 0;
                 padding: 0;
+            }
+            html{
+                width: 100%;
             }
             body{
                 overflow-x: hidden;
@@ -55,6 +58,9 @@
                 "mandoL mandoL comandos comandos comandos comandos comandos comandos comandos comandos mandoR mandoR"
                 "mandoL mandoL comandos comandos comandos comandos comandos comandos comandos comandos mandoR mandoR";
               }
+              .comandos{
+                display: none;
+              }
             }
 
             @media (orientation: portrait) {
@@ -69,10 +75,12 @@
                     height: 50vh;
                 }
                 .comandos{
-                    background: #6A6367;
-                    text-align: center;           
+                    background: #6A6367;           
                     grid-area: comandos;
                     height: 10vh;
+                    text-align: center;
+                    color: white;
+                    display: flex;                    
                 }                
                 .mandoGral{
                     display: flex;
@@ -87,7 +95,7 @@
                 }
                 .grid-container {
                     display: grid;
-                    height: 100vmin;
+                    height: 100vh;
                     grid-template-rows: repeat(12, 1fr);
                     grid-template-columns: repeat(12, 1fr);
                     grid-template-areas:
@@ -152,16 +160,47 @@
                     display: flex;
                     justify-content: center;  
                 }
+
+                .vbtn{
+                    width: 7.2vw;
+                    height: 5vh;
+                    border:1px solid #6A6367;
+                    background-color: whitesmoke;                    
+                }
+                .comandos .msgComandos{
+                    width: 14vw;
+                    text-align: center;
+                    color: white;
+                    font-size:4vw;
+                    height: 10vh;
+                }
             }
         </style>
     </head>
-    <body>
-        
+    <body>       
         <div class="grid-container">
             <div class="mandoL">Mando Izquierdo</div>
             <div class="mandoR">Mando Derecho</div>
             <div class="video">VIDEO</div>
-            <div id="comandos" class="comandos"></div>
+            <div id="comandos" class="comandos">
+                <button class="msgComandos">MIN<br>-</button>
+                <div style="display: flex; flex-direction: column; justify-content: space-evenly;"> 
+                    <div style="font-size: 4vw;">VELOCIDAD</div>
+                    <div style="display: flex;">
+                        <div id="vbtn1" class="vbtn"></div>
+                        <div id="vbtn2" class="vbtn"></div>
+                        <div id="vbtn3" class="vbtn"></div>
+                        <div id="vbtn4" class="vbtn"></div>
+                        <div id="vbtn5" class="vbtn"></div>
+                        <div id="vbtn6" class="vbtn"></div>
+                        <div id="vbtn7" class="vbtn"></div>
+                        <div id="vbtn8" class="vbtn"></div>
+                        <div id="vbtn9" class="vbtn"></div>    
+                        <div id="vbtn10" class="vbtn"></div>  
+                    </div>                       
+                </div>
+                <button class="msgComandos">MAX<br>+</button>                       
+            </div>
             <div class="mandoGral">
                 <div class="central">
                     <div class="LEFT">
@@ -187,7 +226,6 @@
                     </div>  
                 </div>
             </div>   
-        </div>
-        
+        </div>        
     </body>
 </html>
