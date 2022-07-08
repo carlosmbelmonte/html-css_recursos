@@ -58,7 +58,7 @@
                 "mandoL mandoL comandos comandos comandos comandos comandos comandos comandos comandos mandoR mandoR"
                 "mandoL mandoL comandos comandos comandos comandos comandos comandos comandos comandos mandoR mandoR";
               }
-              .comandos{
+              .cmd_portrait{
                 display: none;
               }
             }
@@ -73,14 +73,6 @@
                     text-align: center;            
                     grid-area: video;
                     height: 50vh;
-                }
-                .comandos{
-                    background: #6A6367;           
-                    grid-area: comandos;
-                    height: 10vh;
-                    text-align: center;
-                    color: white;
-                    display: flex;                    
                 }                
                 .mandoGral{
                     display: flex;
@@ -105,15 +97,13 @@
                     "video      video     video     video     video     video     video     video     video     video     video     video"
                     "video      video     video     video     video     video     video     video     video     video     video     video"
                     "video      video     video     video     video     video     video     video     video     video     video     video"
-                    "comandos   comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos"
-                    "comandos   comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos  comandos"
+                    "comandosGral   comandosGral  comandosGral comandosGral  comandosGral  comandosGral  comandosGral  comandosGral  comandosGral  comandosGral  comandosGral  comandosGral"
+                    "comandosGral   comandosGral  comandosGral comandosGral  comandosGral  comandosGral  comandosGral  comandosGral  comandosGral  comandosGral  comandosGral  comandosGral"
                     "mandoGral  mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral"
                     "mandoGral  mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral"
                     "mandoGral  mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral"
                     "mandoGral  mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral";
                 }
-
-
                 button{
                     background-color: #707372;
                     border: none;
@@ -160,14 +150,21 @@
                     display: flex;
                     justify-content: center;  
                 }
-
-                .vbtn{
+                .cmd_portrait{
+                    background: #6A6367;           
+                    grid-area: comandosGral;
+                    height: 10vh;
+                    text-align: center;
+                    color: white;
+                    display: flex;                    
+                }
+                .cmd_portrait .vbtn{
                     width: 7.2vw;
                     height: 5vh;
                     border:1px solid #6A6367;
                     background-color: whitesmoke;                    
                 }
-                .comandos .msgComandos{
+                .cmd_portrait .msgComandos{
                     width: 14vw;
                     text-align: center;
                     color: white;
@@ -182,7 +179,7 @@
             <div class="mandoL">Mando Izquierdo</div>
             <div class="mandoR">Mando Derecho</div>
             <div class="video">VIDEO</div>
-            <div id="comandos" class="comandos">
+            <div class="cmd_portrait">
                 <button class="msgComandos">MIN<br>-</button>
                 <div style="display: flex; flex-direction: column; justify-content: space-evenly;"> 
                     <div style="font-size: 4vw;">VELOCIDAD</div>
