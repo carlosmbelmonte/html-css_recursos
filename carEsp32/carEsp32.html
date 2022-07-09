@@ -23,55 +23,102 @@
             body{
                 overflow-x: hidden;
                 background: purple;
-                display: flex;            
+                display: flex; 
+                height: 100vh;           
             }
-
-            @media (orientation: landscape) {
-              body {
-                flex-direction: row;
-                height: 100vh;
-              }
-              .mandoL{
-                background: #06BADD;
+            .video{
+                background: #221F24;
+                text-align: center;            
+                grid-area: video;
+            }
+            .mandoL,.mandoR{
                 text-align: center;              
-                grid-area: mandoL;
-              }
-              .mandoR{
-                background: #F56E64;
-                text-align: center;              
-                grid-area: mandoR;
-              }
-              .mandoGral{
-                display: none;
-              }
-              .grid-container {
+                width: 15vw;
+            }
+            .grid-container {
                 display: grid;
-                height: 100%;
-                width: 100%;
-                grid-template-rows: repeat(6, 1fr);
-                grid-template-columns: repeat(12, 1fr);
-                grid-template-areas:
-                "mandoL mandoL  video     video   video     video   video     video   video   video    mandoR mandoR"
-                "mandoL mandoL  video     video   video     video   video     video   video   video    mandoR mandoR"
-                "mandoL mandoL  video     video   video     video   video     video   video   video    mandoR mandoR"
-                "mandoL mandoL  video     video   video     video   video     video   video   video    mandoR mandoR"
-                "mandoL mandoL comandos comandos comandos comandos comandos comandos comandos comandos mandoR mandoR"
-                "mandoL mandoL comandos comandos comandos comandos comandos comandos comandos comandos mandoR mandoR";
-              }
-              .cmd_portrait{
-                display: none;
-              }
+                height: 100vh;
+                width: 100vw;
+            }
+            button{
+                background-color: #707372;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+                width: calc( var(--portrait)*5.5vh );
+                height: calc( var(--portrait)*5.5vh );
+                border-radius: var(--brbtn);
+            }
+            button:hover{
+                background-color:rgb(163, 150, 237) 
+            }
+            .cmd_portrait{
+                background: #6A6367;           
+                text-align: center;
+                color:white;
+                display: flex;                   
+            } 
+            .cmd_portrait .vbtn{
+                height: 5vh;
+                border:1px solid #6A6367;
+                background-color: whitesmoke;                    
+            } 
+            .cmd_portrait .msgComandos{
+                width: 14vw;
+                text-align: center;
+                color: white;
+            }          
+            @media (orientation: landscape) {
+                body {
+                    flex-direction: row;                  
+                }
+                .video{
+                    height: 85.3125vh;
+                }
+                .mandoL{
+                    background: #06BADD;
+                    grid-area: mandoL;
+                }
+                .mandoR{
+                    background: #F56E64;              
+                    grid-area: mandoR;
+                }
+                .mandoGral{
+                    display: none;
+                }
+                .grid-container {
+                    grid-template-rows: repeat(6, 1fr);
+                    grid-template-columns: repeat(12, 1fr);
+                    grid-template-areas:
+                    "mandoL mandoL  video     video   video     video   video     video   video   video    mandoR mandoR"
+                    "mandoL mandoL  video     video   video     video   video     video   video   video    mandoR mandoR"
+                    "mandoL mandoL  video     video   video     video   video     video   video   video    mandoR mandoR"
+                    "mandoL mandoL  video     video   video     video   video     video   video   video    mandoR mandoR"
+                    "mandoL mandoL  land      land    land      land    land      land    land    land     mandoR mandoR"
+                    "mandoL mandoL  land      land    land      land    land      land    land    land     mandoR mandoR";
+                }
+                .cmd_portrait{           
+                    grid-area: land;
+                    height: 14.6875vh;
+                    width: 70vw;;                   
+                }
+                .cmd_portrait .vbtn{
+                    width: 4.2vw;   
+                }
+                .cmd_portrait .msgComandos{
+                    font-size:4vh; 
+                    height: 14.6875vh;                  
+                }
+                .cmd_portrait .titulo{
+                    font-size: 4vh;
+                }
             }
 
             @media (orientation: portrait) {
                 body {
                     flex-direction: column;
-                    height: 100vh;
                 }
                 .video{
-                    background: #221F24;
-                    text-align: center;            
-                    grid-area: video;
                     height: 50vh;
                 }                
                 .mandoGral{
@@ -86,8 +133,6 @@
                     display: none;
                 }
                 .grid-container {
-                    display: grid;
-                    height: 100vh;
                     grid-template-rows: repeat(12, 1fr);
                     grid-template-columns: repeat(12, 1fr);
                     grid-template-areas:
@@ -103,18 +148,6 @@
                     "mandoGral  mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral"
                     "mandoGral  mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral"
                     "mandoGral  mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral mandoGral";
-                }
-                button{
-                    background-color: #707372;
-                    border: none;
-                    cursor: pointer;
-                    padding: 0;
-                    width: calc( var(--portrait)*5.5vh );
-                    height: calc( var(--portrait)*5.5vh );
-                    border-radius: var(--brbtn);
-                }
-                button:hover{
-                    background-color:rgb(163, 150, 237) 
                 }
                 .arrow{
                     width: 0; 
@@ -150,26 +183,20 @@
                     display: flex;
                     justify-content: center;  
                 }
-                .cmd_portrait{
-                    background: #6A6367;           
+                .cmd_portrait{           
                     grid-area: comandosGral;
                     height: 10vh;
-                    text-align: center;
-                    color: white;
-                    display: flex;                    
+                    width: 100vw;                   
                 }
                 .cmd_portrait .vbtn{
-                    width: 7.2vw;
-                    height: 5vh;
-                    border:1px solid #6A6367;
-                    background-color: whitesmoke;                    
+                    width: 7.2vw;    
                 }
                 .cmd_portrait .msgComandos{
-                    width: 14vw;
-                    text-align: center;
-                    color: white;
                     font-size:4vw;
                     height: 10vh;
+                }
+                .cmd_portrait .titulo{
+                    font-size: 4vw;
                 }
             }
         </style>
@@ -182,7 +209,7 @@
             <div class="cmd_portrait">
                 <button class="msgComandos">MIN<br>-</button>
                 <div style="display: flex; flex-direction: column; justify-content: space-evenly;"> 
-                    <div style="font-size: 4vw;">VELOCIDAD</div>
+                    <div class="titulo">VELOCIDAD</div>
                     <div style="display: flex;">
                         <div id="vbtn1" class="vbtn"></div>
                         <div id="vbtn2" class="vbtn"></div>
