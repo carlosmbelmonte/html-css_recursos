@@ -5,13 +5,6 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script>
-            let rootElement = document.documentElement;           
-            let cteportrait = (screen.height/screen.width);
-            let ctelandscape = (screen.width/screen.height);
-            rootElement.style.setProperty("--portrait", cteportrait);
-            rootElement.style.setProperty("--landscape", ctelandscape);
-        </script>
         <style>
             *{
                 margin: 0;
@@ -24,12 +17,15 @@
                 overflow-x: hidden;
                 background: purple;
                 display: flex; 
-                height: 100vh;           
+                min-height: 100vh;           
             }
             .video{
                 background: #221F24;
                 text-align: center;            
                 grid-area: video;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
             .mandoL,.mandoR{
                 text-align: center;              
@@ -49,7 +45,7 @@
                 cursor: pointer;
                 padding: 0;
             }
-            button:hover{
+            button:active{
                 background-color:rgb(163, 150, 237) 
             }
             .arrow{
@@ -88,6 +84,12 @@
                 }
                 .video{
                     height: 85.3125vh;
+                }
+                .video img{  
+                    width: auto ;
+                    max-width: 70vw ;
+                    height:  auto;
+                    max-height: 80vh;                    
                 }
                 .mandoL{
                     background: #06BADD;
@@ -155,6 +157,11 @@
                 }
                 .video{
                     height: 50vh;
+                }
+                .video img{  
+                    width: auto ;
+                    max-width: 100% ;
+                    height: 50vh ; 
                 }                
                 .mandoGral{
                     display: flex;
@@ -234,15 +241,15 @@
             <div class="mandoL">
                 <div class="alineacionL">
                     <div class="LEFT" style="display: flex; align-items: flex-start;">
-                        <button id="btnL" onpointerdown="DownPush('L')" onpointerup="UpPush('L')" style="--brbtn: 2.5vh 0px 0px 2.5vh;" name="gamepad">
+                        <button id="btnL" onpointerdown="togglePush('left')" onpointerup="togglePush('stop')" style="--brbtn: 2.5vh 0px 0px 2.5vh;" name="gamepadDuo">
                             <div class="arrow" style="--btop: 1.5vh solid transparent;--bbottom: 1.5vh solid transparent; --bright: 1.5vh solid #212324; --bleft:none" ></div>   
                         </button> 
                     </div>
                     <div class="CENTER">
-                        <button id="btnStopL" onpointerdown="DownPush('Stop')" onpointerup="UpPush('Stop')" style="--brbtn: 0px 6vh 0px 0px;">
+                        <button id="btnStopL" onpointerdown="togglePush('stop')" onpointerup="togglePush('stop')" style="--brbtn: 0px 6vh 0px 0px;" name="gamepadDuo">
                             <div class="circle"></div>
                         </button>    
-                        <button id="btnB" onpointerdown="DownPush('B')" onpointerup="UpPush('B')" class="btnVertical" style="--brbtn: 0px 0px 2.5vh 2.5vh;" name="gamepad">
+                        <button id="btnB" onpointerdown="togglePush('backward')" onpointerup="togglePush('stop')" class="btnVertical" style="--brbtn: 0px 0px 2.5vh 2.5vh;" name="gamepadDuo">
                             <div class="arrow" style="--bleft: 1.5vh solid transparent;--bright: 1.5vh solid transparent; --bbottom: none; --btop:1.5vh solid #212324" ></div>
                         </button>
                     </div>
@@ -251,21 +258,23 @@
             <div class="mandoR">
                 <div class="alineacionR">
                     <div class="CENTER">
-                        <button id="btnU" onpointerdown="DownPush('U')" onpointerup="UpPush('U')" class="btnVertical" style="--brbtn: 2.5vh 2.5vh 0px 0px;" name="gamepad">
+                        <button id="btnU" onpointerdown="togglePush('forward')" onpointerup="togglePush('stop')" class="btnVertical" style="--brbtn: 2.5vh 2.5vh 0px 0px;" name="gamepadDuo">
                             <div class="arrow" style="--bleft: 1.5vh solid transparent;--bright: 1.5vh solid transparent; --bbottom: 1.5vh solid #212324; --btop:none" ></div>
                         </button>
-                        <button id="btnStopR" onpointerdown="DownPush('Stop')" onpointerup="UpPush('Stop')" style="--brbtn: 0px 0px 0px 6vh">
+                        <button id="btnStopR" onpointerdown="togglePush('stop')" onpointerup="togglePush('stop')" style="--brbtn: 0px 0px 0px 6vh" name="gamepadDuo">
                             <div class="circle"></div>
                         </button>
                     </div>                        
                     <div class="RIGHT" style="display: flex; align-items: flex-end;">
-                        <button id="btnR" onpointerdown="DownPush('R')" onpointerup="UpPush('R')" style="--brbtn: 0px 2.5vh 2.5vh 0px;" name="gamepad">
+                        <button id="btnR" onpointerdown="togglePush('right')" onpointerup="togglePush('stop')" style="--brbtn: 0px 2.5vh 2.5vh 0px;" name="gamepadDuo">
                             <div class="arrow" style="--btop: 1.5vh solid transparent;--bbottom: 1.5vh solid transparent; --bright: none; --bleft:1.5vh solid #212324" ></div>   
                         </button>
                     </div>                     
                 </div> 
             </div>
-            <div class="video">VIDEO</div>
+            <div class="video">
+                <img src="" id="photo">
+            </div>
             <div class="cmd">
                 <button class="msgComandos">MIN<br>-</button>
                 <div style="display: flex; flex-direction: column; justify-content: space-evenly;"> 
@@ -288,28 +297,36 @@
             <div class="mandoGral">
                 <div class="central">
                     <div class="LEFT">
-                        <button id="btnL" onpointerdown="DownPush('L')" onpointerup="UpPush('L')" style="--brbtn: 1.5vh 0px 0px 1.5vh;" name="gamepad">
+                        <button id="btnL" onpointerdown="togglePush('left')" onpointerup="togglePush('stop')" style="--brbtn: 1.5vh 0px 0px 1.5vh;" name="gamepad">
                             <div class="arrow" style="--btop: 1.5vh solid transparent;--bbottom: 1.5vh solid transparent; --bright: 1.5vh solid #212324; --bleft:none" ></div>   
                         </button> 
                     </div>
                     <div class="CENTER">
-                        <button id="btnU" onpointerdown="DownPush('U')" onpointerup="UpPush('U')" class="btnVertical" style="--brbtn: 1.5vh 1.5vh 0px 0px;" name="gamepad">
+                        <button id="btnU" onpointerdown="togglePush('forward')" onpointerup="togglePush('stop')" class="btnVertical" style="--brbtn: 1.5vh 1.5vh 0px 0px;" name="gamepad">
                             <div class="arrow" style="--bleft: 1.5vh solid transparent;--bright: 1.5vh solid transparent; --bbottom: 1.5vh solid #212324; --btop:none" ></div>
                         </button>
-                        <button id="btnStop" onpointerdown="DownPush('Stop')" onpointerup="UpPush('Stop')" style="--brbtn: none;">
+                        <button id="btnStop" onpointerdown="togglePush('stop')" onpointerup="togglePush('stop')" style="--brbtn: none;">
                             <div class="circle"></div>
                         </button>    
-                        <button id="btnB" onpointerdown="DownPush('B')" onpointerup="UpPush('B')" class="btnVertical" style="--brbtn: 0px 0px 1.5vh 1.5vh;" name="gamepad">
+                        <button id="btnB" onpointerdown="togglePush('backward')" onpointerup="togglePush('stop')" class="btnVertical" style="--brbtn: 0px 0px 1.5vh 1.5vh;" name="gamepad">
                             <div class="arrow" style="--bleft: 1.5vh solid transparent;--bright: 1.5vh solid transparent; --bbottom: none; --btop:1.5vh solid #212324" ></div>
                         </button>
                     </div>
                     <div class="RIGHT">
-                        <button id="btnR" onpointerdown="DownPush('R')" onpointerup="UpPush('R')" style="--brbtn: 0px 1.5vh 1.5vh 0px;" name="gamepad">
+                        <button id="btnR" onpointerdown="togglePush('right')" onpointerup="togglePush('stop')" style="--brbtn: 0px 1.5vh 1.5vh 0px;" name="gamepad">
                             <div class="arrow" style="--btop: 1.5vh solid transparent;--bbottom: 1.5vh solid transparent; --bright: none; --bleft:1.5vh solid #212324" ></div>   
                         </button>
                     </div>  
                 </div>
             </div>   
         </div>        
+    <script>
+        function togglePush(x) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/action?go=" + x, true);
+            xhr.send();
+        }
+        window.onload = document.getElementById("photo").src = window.location.href.slice(0, -1) + ":81/stream";
+    </script>
     </body>
 </html>
