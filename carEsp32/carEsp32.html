@@ -29,7 +29,7 @@
             }
             .mandoL,.mandoR{
                 text-align: center;              
-                width: 15vw;
+                width: 20vw;
                 display:flex;
                 justify-content: center;
                 align-items: flex-end;
@@ -66,8 +66,15 @@
                 background: #6A6367;           
                 text-align: center;
                 color:white;
-                display: flex;                   
+                display: flex;  
+                width: 100vw;                 
             } 
+            .cmd .cmd_contenido{
+                display: flex; 
+                flex-direction: column; 
+                justify-content: space-evenly;
+                width:72vw;
+            }
             .cmd .vbtn{
                 height: 5vh;
                 border:1px solid #6A6367;
@@ -84,10 +91,11 @@
                 }
                 .video{
                     height: 85.3125vh;
+                    width: 60vw;
                 }
                 .video img{  
                     width: auto ;
-                    max-width: 70vw ;
+                    max-width: 60vw ;
                     height:  auto;
                     max-height: 80vh;                    
                 }
@@ -133,14 +141,21 @@
                 .cmd{           
                     grid-area: land;
                     height: 14.6875vh;
-                    width: 70vw;;                   
+                    width: 60vw;;                   
+                }
+                .cmd .cmd_contenido{
+                    display: flex; 
+                    flex-direction: column; 
+                    justify-content: space-evenly;
+                    width: 32vw;
                 }
                 .cmd .vbtn{
                     width: 4.2vw;   
                 }
                 .cmd .msgComandos{
                     font-size:4vh; 
-                    height: 14.6875vh;                  
+                    height: 14.6875vh;   
+                    width: 14vw;               
                 }
                 .cmd .titulo{
                     font-size: 4vh;
@@ -277,7 +292,7 @@
             </div>
             <div class="cmd">
                 <button class="msgComandos">MIN<br>-</button>
-                <div style="display: flex; flex-direction: column; justify-content: space-evenly;"> 
+                <div class="cmd_contenido"> 
                     <div class="titulo">VELOCIDAD</div>
                     <div style="display: flex;">
                         <div id="vbtn1" class="vbtn"></div>
