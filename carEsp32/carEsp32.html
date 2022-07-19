@@ -46,7 +46,7 @@
                 padding: 0;
             }
             button:active{
-                background-color:rgb(163, 150, 237) 
+                background-color:#a396ed;
             }
             .arrow{
                 width: 0; 
@@ -227,12 +227,6 @@
                 .LEFT,.RIGHT{
                     margin: auto 0;
                 }
-                .btnVertical{
-                    margin-right: auto;
-                    margin-left: auto;
-                    display: flex;
-                    justify-content: center;  
-                }
                 .cmd{           
                     grid-area: comandosGral;
                     height: 10vh;
@@ -251,20 +245,20 @@
             }
         </style>
     </head>
-    <body>       
+    <body ontouchstart="">       
         <div class="grid-container">
             <div class="mandoL">
                 <div class="alineacionL">
                     <div class="LEFT" style="display: flex; align-items: flex-start;">
-                        <button id="btnL" onpointerdown="togglePush('left')" onpointerup="togglePush('stop')" style="--brbtn: 2.5vh 0px 0px 2.5vh;" name="gamepadDuo">
+                        <button id="btnL" onpointerdown="togglePush('+btnL','left','#a396ed')" onpointerup="togglePush('+btnL','stop','#707372')" style="--brbtn: 2.5vh 0px 0px 2.5vh;" name="gamepad">
                             <div class="arrow" style="--btop: 1.5vh solid transparent;--bbottom: 1.5vh solid transparent; --bright: 1.5vh solid #212324; --bleft:none" ></div>   
                         </button> 
                     </div>
                     <div class="CENTER">
-                        <button id="btnStopL" onpointerdown="togglePush('stop')" onpointerup="togglePush('stop')" style="--brbtn: 0px 6vh 0px 0px;" name="gamepadDuo">
+                        <button id="btnStopL" onpointerdown="stopPush('parar','btnStopL')" onpointerup="stopPush('stop','btnStopL')" style="--brbtn: 0px 6vh 0px 0px;">
                             <div class="circle"></div>
                         </button>    
-                        <button id="btnB" onpointerdown="togglePush('backward')" onpointerup="togglePush('stop')" class="btnVertical" style="--brbtn: 0px 0px 2.5vh 2.5vh;" name="gamepadDuo">
+                        <button id="btnB" onpointerdown="togglePush('+btnB','backward','#a396ed')" onpointerup="togglePush('+btnB','stop','#707372')" style="--brbtn: 0px 0px 2.5vh 2.5vh;" name="gamepad">
                             <div class="arrow" style="--bleft: 1.5vh solid transparent;--bright: 1.5vh solid transparent; --bbottom: none; --btop:1.5vh solid #212324" ></div>
                         </button>
                     </div>
@@ -273,15 +267,15 @@
             <div class="mandoR">
                 <div class="alineacionR">
                     <div class="CENTER">
-                        <button id="btnU" onpointerdown="togglePush('forward')" onpointerup="togglePush('stop')" class="btnVertical" style="--brbtn: 2.5vh 2.5vh 0px 0px;" name="gamepadDuo">
+                        <button id="btnU" onpointerdown="togglePush('+btnU','forward','#a396ed')" onpointerup="togglePush('+btnU','stop','#707372')" style="--brbtn: 2.5vh 2.5vh 0px 0px;" name="gamepad">
                             <div class="arrow" style="--bleft: 1.5vh solid transparent;--bright: 1.5vh solid transparent; --bbottom: 1.5vh solid #212324; --btop:none" ></div>
                         </button>
-                        <button id="btnStopR" onpointerdown="togglePush('stop')" onpointerup="togglePush('stop')" style="--brbtn: 0px 0px 0px 6vh" name="gamepadDuo">
+                        <button id="btnStopR" onpointerdown="stopPush('parar','btnStopR')" onpointerup="stopPush('stop','btnStopR')" style="--brbtn: 0px 0px 0px 6vh">
                             <div class="circle"></div>
                         </button>
                     </div>                        
                     <div class="RIGHT" style="display: flex; align-items: flex-end;">
-                        <button id="btnR" onpointerdown="togglePush('right')" onpointerup="togglePush('stop')" style="--brbtn: 0px 2.5vh 2.5vh 0px;" name="gamepadDuo">
+                        <button id="btnR" onpointerdown="togglePush('+btnR','right','#a396ed')" onpointerup="togglePush('+btnR','stop','#707372')" style="--brbtn: 0px 2.5vh 2.5vh 0px;" name="gamepad">
                             <div class="arrow" style="--btop: 1.5vh solid transparent;--bbottom: 1.5vh solid transparent; --bright: none; --bleft:1.5vh solid #212324" ></div>   
                         </button>
                     </div>                     
@@ -312,23 +306,23 @@
             <div class="mandoGral">
                 <div class="central">
                     <div class="LEFT">
-                        <button id="btnL" onpointerdown="togglePush('left')" onpointerup="togglePush('stop')" style="--brbtn: 1.5vh 0px 0px 1.5vh;" name="gamepad">
+                        <button id="+btnL" onpointerdown="togglePush('+btnL','left','#a396ed')" onpointerup="togglePush('+btnL','stop','#707372')" style="--brbtn: 1.5vh 0px 0px 1.5vh;" name="gamepad">
                             <div class="arrow" style="--btop: 1.5vh solid transparent;--bbottom: 1.5vh solid transparent; --bright: 1.5vh solid #212324; --bleft:none" ></div>   
                         </button> 
                     </div>
                     <div class="CENTER">
-                        <button id="btnU" onpointerdown="togglePush('forward')" onpointerup="togglePush('stop')" class="btnVertical" style="--brbtn: 1.5vh 1.5vh 0px 0px;" name="gamepad">
+                        <button id="+btnU" onpointerdown="togglePush('+btnU','forward','#a396ed')" onpointerup="togglePush('+btnU','stop','#707372')" style="--brbtn: 1.5vh 1.5vh 0px 0px;" name="gamepad">
                             <div class="arrow" style="--bleft: 1.5vh solid transparent;--bright: 1.5vh solid transparent; --bbottom: 1.5vh solid #212324; --btop:none" ></div>
                         </button>
-                        <button id="btnStop" onpointerdown="togglePush('stop')" onpointerup="togglePush('stop')" style="--brbtn: none;">
+                        <button id="+btnStop" onpointerdown="stopPush('parar')" onpointerup="stopPush('stop')" style="--brbtn: none;">
                             <div class="circle"></div>
                         </button>    
-                        <button id="btnB" onpointerdown="togglePush('backward')" onpointerup="togglePush('stop')" class="btnVertical" style="--brbtn: 0px 0px 1.5vh 1.5vh;" name="gamepad">
+                        <button id="+btnB" onpointerdown="togglePush('+btnB','backward','#a396ed')" onpointerup="togglePush('+btnB','stop','#707372')" style="--brbtn: 0px 0px 1.5vh 1.5vh;" name="gamepad">
                             <div class="arrow" style="--bleft: 1.5vh solid transparent;--bright: 1.5vh solid transparent; --bbottom: none; --btop:1.5vh solid #212324" ></div>
                         </button>
                     </div>
                     <div class="RIGHT">
-                        <button id="btnR" onpointerdown="togglePush('right')" onpointerup="togglePush('stop')" style="--brbtn: 0px 1.5vh 1.5vh 0px;" name="gamepad">
+                        <button id="+btnR" onpointerdown="togglePush('+btnR','right','#a396ed')" onpointerup="togglePush('+btnR','stop','#707372')" style="--brbtn: 0px 1.5vh 1.5vh 0px;" name="gamepad">
                             <div class="arrow" style="--btop: 1.5vh solid transparent;--bbottom: 1.5vh solid transparent; --bright: none; --bleft:1.5vh solid #212324" ></div>   
                         </button>
                     </div>  
@@ -336,7 +330,36 @@
             </div>   
         </div>        
     <script>
-        function togglePush(x) {
+        let _gamepad = document.getElementsByName("gamepad");
+        
+        function stopPush(x,y){
+            if(x==='parar'){
+                for(let i=0;i<8;i++){
+                    _gamepad[i].style.backgroundColor = '#a396ed';                        
+                }
+                if(y === 'btnStopR'){document.getElementById('btnStopL').style.backgroundColor = '#a396ed';}
+                if(y === 'btnStopL'){document.getElementById('btnStopR').style.backgroundColor = '#a396ed';}
+                sendCommand('stop');
+            }else{
+                for(let i=0;i<8;i++){
+                    _gamepad[i].style.backgroundColor = '#707372';                        
+                }
+                if(y === 'btnStopR'){document.getElementById('btnStopL').style.backgroundColor = '#707372';}
+                if(y === 'btnStopL'){document.getElementById('btnStopR').style.backgroundColor = '#707372';}
+                sendCommand('stop');
+            }
+        }
+
+        function togglePush(x,y,color){
+            for(let i=0;i<8;i++){
+                if(_gamepad[i].id===x){
+                    _gamepad[i].style.backgroundColor = color;
+                    sendCommand(y);
+                }
+            }
+        }
+
+        function sendCommand(x) {           
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "/action?go=" + x, true);
             xhr.send();
