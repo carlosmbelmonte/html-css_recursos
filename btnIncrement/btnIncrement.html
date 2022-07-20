@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <title>btnIncrement</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            html{
+                width: 100%;
+            }
+            body{
+                overflow-x: hidden;
+                display: flex; 
+                min-height: 100vh;           
+            }
+            button{
+                background-color: #707372;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+            }
+            button:active{
+                background-color:#a396ed;
+            }
+            .cmd{
+                background: #6A6367;           
+                text-align: center;
+                color:white;
+                display: flex;  
+                width: 100vw;                 
+            } 
+            .cmd .cmd_contenido{
+                display: flex; 
+                flex-direction: column; 
+                justify-content: space-evenly;
+                width:72vw;
+            }
+            .cmd .vbtn{
+                height: 5vh;
+                border:1px solid #6A6367;
+                background-color: whitesmoke; 
+                width: 7.2vw;                   
+            } 
+            .cmd .msgComandos{
+                width: 14vw;
+                text-align: center;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="cmd">
+            <button class="msgComandos" onpointerdown="decrementar()">MIN<br>-</button>
+            <div class="cmd_contenido"> 
+                <div id="vel" class="titulo">VELOCIDAD</div>
+                <div style="display: flex;">
+                    <div id="vbtn0" class="vbtn" name="divColor"></div> 
+                    <div id="vbtn1" class="vbtn" name="divColor"></div>
+                    <div id="vbtn2" class="vbtn" name="divColor"></div>
+                    <div id="vbtn3" class="vbtn" name="divColor"></div>
+                    <div id="vbtn4" class="vbtn" name="divColor"></div>
+                    <div id="vbtn5" class="vbtn" name="divColor"></div>
+                    <div id="vbtn6" class="vbtn" name="divColor"></div>
+                    <div id="vbtn7" class="vbtn" name="divColor"></div>
+                    <div id="vbtn8" class="vbtn" name="divColor"></div>
+                    <div id="vbtn9" class="vbtn" name="divColor"></div>     
+                </div>                       
+            </div>
+            <button class="msgComandos" onpointerdown="incrementar()">MAX<br>+</button>                       
+        </div>
+
+        <script type="text/javascript">
+            var clicks = 0;
+            let _divColor = document.getElementsByName("divColor");
+            console.log(_divColor);
+            const arrayVel = [25,50,75,100,125,150,175,200,225,250];            
+
+            function incrementar() {
+                if(clicks<10){ 
+                    clicks += 1;                 
+                    console.log(`Click Incremento: ${clicks}`);
+                    _divColor[clicks-1].style.backgroundColor = `hsl(${117-((clicks-1)*13)}, 100%, 50%)`;   
+                    document.getElementById("vel").innerText = `VELOCIDAD: ${arrayVel[clicks-1]}` 
+                }
+            }
+            function decrementar() {
+                if(clicks>1){
+                    clicks -= 1;
+                    console.log(`Click Decremento: ${clicks}`);
+                    _divColor[clicks].style.backgroundColor = '#F5F5F5';  
+                    document.getElementById("vel").innerText = `VELOCIDAD: ${arrayVel[clicks-1]}` 
+                }                
+            }
+        </script>
+    </body>
+</html>
