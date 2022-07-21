@@ -63,14 +63,12 @@
                 background: #6A6367;           
                 text-align: center;
                 color:white;
-                display: flex;  
-                width: 100vw;                 
+                display: flex;                  
             } 
             .cmd .cmd_contenido{
                 display: flex; 
                 flex-direction: column; 
                 justify-content: space-evenly;
-                width:72vw;
             }
             .cmd .vbtn{
                 height: 5vh;
@@ -141,9 +139,6 @@
                     width: 60vw;;                   
                 }
                 .cmd .cmd_contenido{
-                    display: flex; 
-                    flex-direction: column; 
-                    justify-content: space-evenly;
                     width: 32vw;
                 }
                 .cmd .vbtn{
@@ -151,8 +146,7 @@
                 }
                 .cmd .msgComandos{
                     font-size:4vh; 
-                    height: 14.6875vh;   
-                    width: 14vw;               
+                    height: 14.6875vh;                  
                 }
                 .cmd .titulo{
                     font-size: 4vh;
@@ -229,6 +223,9 @@
                     height: 10vh;
                     width: 100vw;                   
                 }
+                .cmd .cmd_contenido{
+                    width: 72vw;
+                }
                 .cmd .vbtn{
                     width: 7.2vw;    
                 }
@@ -282,23 +279,23 @@
                 <img src="" id="photo">
             </div>
             <div class="cmd">
-                <button class="msgComandos">MIN<br>-</button>
+                <button class="msgComandos" onpointerdown="decrementar()">MIN<br>-</button>
                 <div class="cmd_contenido"> 
-                    <div class="titulo">VELOCIDAD</div>
+                    <div id="vel" class="titulo">VELOCIDAD</div>
                     <div style="display: flex;">
-                        <div id="vbtn1" class="vbtn"></div>
-                        <div id="vbtn2" class="vbtn"></div>
-                        <div id="vbtn3" class="vbtn"></div>
-                        <div id="vbtn4" class="vbtn"></div>
-                        <div id="vbtn5" class="vbtn"></div>
-                        <div id="vbtn6" class="vbtn"></div>
-                        <div id="vbtn7" class="vbtn"></div>
-                        <div id="vbtn8" class="vbtn"></div>
-                        <div id="vbtn9" class="vbtn"></div>    
-                        <div id="vbtn10" class="vbtn"></div>  
+                        <div id="vbtn0" class="vbtn" name="divColor"></div> 
+                        <div id="vbtn1" class="vbtn" name="divColor"></div>
+                        <div id="vbtn2" class="vbtn" name="divColor"></div>
+                        <div id="vbtn3" class="vbtn" name="divColor"></div>
+                        <div id="vbtn4" class="vbtn" name="divColor"></div>
+                        <div id="vbtn5" class="vbtn" name="divColor"></div>
+                        <div id="vbtn6" class="vbtn" name="divColor"></div>
+                        <div id="vbtn7" class="vbtn" name="divColor"></div>
+                        <div id="vbtn8" class="vbtn" name="divColor"></div>
+                        <div id="vbtn9" class="vbtn" name="divColor"></div>   
                     </div>                       
                 </div>
-                <button class="msgComandos">MAX<br>+</button>                       
+                <button class="msgComandos" onpointerdown="incrementar()">MAX<br>+</button>                       
             </div>
             <div class="mandoGral">
                 <div class="central">
@@ -327,7 +324,26 @@
             </div>   
         </div>        
     <script>
+        var clicks = 0;
+        let _divColor = document.getElementsByName("divColor");
+        const arrayVel = [25,50,75,100,125,150,175,200,225,250];
         let _gamepad = document.getElementsByName("gamepad");
+        function incrementar() {
+            if(clicks<10){ 
+                clicks += 1;                 
+                console.log(`Click Incremento: ${clicks}`);
+                _divColor[clicks-1].style.backgroundColor = `hsl(${117-((clicks-1)*13)}, 100%, 50%)`;   
+                document.getElementById("vel").innerText = `VELOCIDAD: ${arrayVel[clicks-1]}` 
+            }
+        }
+        function decrementar() {
+            if(clicks>1){
+                clicks -= 1;
+                console.log(`Click Decremento: ${clicks}`);
+                _divColor[clicks].style.backgroundColor = '#F5F5F5';  
+                document.getElementById("vel").innerText = `VELOCIDAD: ${arrayVel[clicks-1]}` 
+            }                
+        }
         
         function togglePush(x,y,color){
             if(x === '+btnStop' || x === 'btnStopR' || x === 'btnStopL'){
