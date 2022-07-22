@@ -328,10 +328,10 @@
         let _divColor = document.getElementsByName("divColor");
         const arrayVel = [25,50,75,100,125,150,175,200,225,250];
         let _gamepad = document.getElementsByName("gamepad");
+
         function incrementar() {
             if(clicks<10){ 
                 clicks += 1;                 
-                console.log(`Click Incremento: ${clicks}`);
                 _divColor[clicks-1].style.backgroundColor = `hsl(${117-((clicks-1)*13)}, 100%, 50%)`;   
                 document.getElementById("vel").innerText = `VELOCIDAD: ${arrayVel[clicks-1]}`;
                 sendCommand('speed',arrayVel[clicks-1]);
@@ -340,13 +340,11 @@
         function decrementar() {
             if(clicks>1){
                 clicks -= 1;
-                console.log(`Click Decremento: ${clicks}`);
                 _divColor[clicks].style.backgroundColor = '#F5F5F5';  
                 document.getElementById("vel").innerText = `VELOCIDAD: ${arrayVel[clicks-1]}`;
                 sendCommand('speed',arrayVel[clicks-1]);
             }                
-        }
-        
+        }       
         function togglePush(x,y,color){
             if(x === '+btnStop' || x === 'btnStopR' || x === 'btnStopL'){
                 for(let i=0;i<8;i++){
@@ -366,13 +364,11 @@
                 }
             }
         }
-
         function sendCommand(x,y) {           
             var xhr = new XMLHttpRequest();
             xhr.open("GET", `/action?${x}=` + y, true);
             xhr.send();
         }
-
         window.onload = document.getElementById("photo").src = window.location.href.slice(0, -1) + ":81/stream";
     </script>
     </body>
