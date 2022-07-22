@@ -333,7 +333,8 @@
                 clicks += 1;                 
                 console.log(`Click Incremento: ${clicks}`);
                 _divColor[clicks-1].style.backgroundColor = `hsl(${117-((clicks-1)*13)}, 100%, 50%)`;   
-                document.getElementById("vel").innerText = `VELOCIDAD: ${arrayVel[clicks-1]}` 
+                document.getElementById("vel").innerText = `VELOCIDAD: ${arrayVel[clicks-1]}`;
+                sendCommand('speed',arrayVel[clicks-1]);
             }
         }
         function decrementar() {
@@ -341,7 +342,8 @@
                 clicks -= 1;
                 console.log(`Click Decremento: ${clicks}`);
                 _divColor[clicks].style.backgroundColor = '#F5F5F5';  
-                document.getElementById("vel").innerText = `VELOCIDAD: ${arrayVel[clicks-1]}` 
+                document.getElementById("vel").innerText = `VELOCIDAD: ${arrayVel[clicks-1]}`;
+                sendCommand('speed',arrayVel[clicks-1]);
             }                
         }
         
@@ -353,24 +355,24 @@
                 document.getElementById('+btnStop').style.backgroundColor = color;
                 document.getElementById('btnStopR').style.backgroundColor = color;
                 document.getElementById('btnStopL').style.backgroundColor = color;
-                sendCommand(y);
+                sendCommand('go',y);
                 return 0;
             }
             for(let i=0;i<8;i++){
                 if(_gamepad[i].id===x){
                     _gamepad[i].style.backgroundColor = color;
-                    sendCommand(y);
+                    sendCommand('go',y);
                     return 0;
                 }
             }
-
         }
 
-        function sendCommand(x) {           
+        function sendCommand(x,y) {           
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", "/action?go=" + x, true);
+            xhr.open("GET", `/action?${x}=` + y, true);
             xhr.send();
         }
+
         window.onload = document.getElementById("photo").src = window.location.href.slice(0, -1) + ":81/stream";
     </script>
     </body>
